@@ -12,11 +12,11 @@ const Tab = createBottomTabNavigator()
 
 const Informations = () => {
   return(
-    <NavigationContainer>
-      <Tab.Navigator >
-        <Tab.Screen name="PopularPeopleScreen" component={popularPeople} />
-        <Tab.Screen name="MovieScreen" component={movies} />
-        <Tab.Screen name="SeriesScreen" component={series} />
+    <NavigationContainer >
+      <Tab.Navigator screenOptions={{headerShown:false}}>
+        <Tab.Screen name="Famous" component={popularPeople} />
+        <Tab.Screen name="Movies" component={movies} />
+        <Tab.Screen name="Series" component={series} />
       </Tab.Navigator>
     </NavigationContainer>
   )

@@ -3,9 +3,7 @@ import { SafeAreaView, TouchableOpacity, Button, Text, FlatList, Image, StyleShe
 import axios from 'axios';
 import Cards from '../components/card/card';
 
-let URL = "https://api.themoviedb.org/3/movie/popular?api_key=11a100e568ee3b2467f04ee72c058315"
-
-
+const URL = "https://api.themoviedb.org/3/movie/popular?api_key=11a100e568ee3b2467f04ee72c058315"
 
 function App(){
 
@@ -14,24 +12,19 @@ function App(){
     async function fetchData (){
         const response = await axios.get(URL)
         const movieData = response.data
-        console.log(movieData)
+        //console.log(movieData)
         setMovieList(movieData.results)
 
     }
 
-  
-    console.log(movieList,'ss')
+   // console.log(movieList,'ss')
 
-    useEffect(()=>{fetchData()}
-    ,[])
+   useEffect(()=>{fetchData()} ,[])
 
     return(
-        <SafeAreaView style={{flex:1, column:2}} >
-            <Text>
-                movies
-            </Text>
-            <Button title="fetch data " onPress={fetchData}></Button>
+        <SafeAreaView style={{flex:1, backgroundColor:"#292929"}} >
             <FlatList 
+             numColumns={2}
              data={movieList}
              renderItem={renderData}
              keyExtractor={(item) => item.id.toString()}></FlatList>
@@ -40,6 +33,12 @@ function App(){
     )
 }
 
-const renderData = ({item}) => (<Cards title={item.title} adult={item.adult} image={item.backdrop_path}></Cards>)
+const renderData = ({item}) => 
+(<Cards 
+    title={item.title} 
+    adult={item.adult} 
+    image={item.backdrop_path} 
+    releaseDate={item.release_date}
+    vote={item.vote_average} />)
 
 export default App;
