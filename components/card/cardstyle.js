@@ -34,6 +34,7 @@ export default StyleSheet.create({
         flexDirection:"row",
         paddingTop:3,
         paddingBottom:5,
+        borderRadius:10
     },
 
     adult:{

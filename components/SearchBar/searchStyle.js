@@ -5,6 +5,7 @@ export default StyleSheet.create({
         backgroundColor:'gray',
         borderRadius:10,
         margin:10,
+        marginBottom:5,
         paddingLeft:10,
     },
 })

@@ -1,22 +1,47 @@
-import React from "react"
-import { TouchableOpacity, Text, View} from 'react-native'
-import styles from "./style"
+import React, {useState, useEffect} from 'react';
+import {View, FlatList} from 'react-native';
+import axios from 'axios';
 
-function SearchButtons(props) {
-    return (
-      <View style={{flexDirection:'row', justifyContent:"space-around"}}>
-          <TouchableOpacity style={styles.button} onPress={props.AvaliableSearch}  >
-            <Text style={styles.buttonText}> various 1 </Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.button}  onPress={props.InAvaliableSearch} >
-            <Text style={styles.buttonText}> various 2 </Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={props.showAllSong}>
-            <Text style={styles.buttonText}> various 3 </Text>
-          </TouchableOpacity>
-        </View>
-    )
+import Button from './buttons';
+import style from './style';
+
+function SearchButtonsForMovie(props) {
+
+  const [genres, setGenres] = useState([]);
+
+  async function fetchData() {
+    props.setIsLoading(true)
+    const response = await axios.get(props.genreURL);
+    const genresData = response.data;
+    props.setIsLoading(false)
+    setGenres(genresData.genres);
+  }
+
+  async function fetchFilteredData(item) {
+    props.setIsLoading(true)
+    const response = await axios.get(props.discoverUrl, {params: {with_genres: item.id}});
+    props.setMovieList(response.data.results);
+    props.setIsLoading(false)
+    console.log(response.data.results, 'response');
+  }
+
+  const renderData = ({item}) => (
+    <Button onPress={() => fetchFilteredData(item)} name={item.name}></Button>
+  );
+
+  useEffect(() => {fetchData() }, []);
+
+
+  return (
+    <View style={style.container}>
+      <FlatList
+        horizontal={true}
+        data={genres}
+        renderItem={renderData}
+        keyExtractor={item => item.id.toString()}></FlatList>
+    </View>
+  );
+  
 }
 
-export default SearchButtons;
-  
+export default SearchButtonsForMovie;

@@ -3,7 +3,7 @@ import { StyleSheet, Dimensions } from 'react-native'
 export default StyleSheet.create(
     {
         container:{
-            flex:1
+            marginTop:10
           },
           seperator:{
             width:Dimensions.get("screen").width,
@@ -14,6 +14,7 @@ export default StyleSheet.create(
             borderRadius:10,
             backgroundColor:'gray',
             padding:5,
+            margin:10,
             borderColor:'black',
             borderWidth:1,
             width:Dimensions.get("screen").width / 4

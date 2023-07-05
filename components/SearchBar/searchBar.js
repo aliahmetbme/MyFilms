@@ -1,5 +1,5 @@
-import { SafeAreaView, TextInput, Button } from 'react-native'
-import React, {useState} from 'react'
+import { SafeAreaView, TextInput } from 'react-native'
+import React from 'react'
 import style from './searchStyle'
 const searchBar = (props) => {
     return (
