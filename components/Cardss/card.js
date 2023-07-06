@@ -4,11 +4,10 @@ import style from './cardstyle';
 import { useNavigation } from '@react-navigation/native';
 
 
-export default function cards({title, image, adult, releaseDate, vote ,overview}) {
+export default function cards({title, image, adult, releaseDate, vote ,overview, genres, url}) {
 
   const source =  "https://image.tmdb.org/t/p/original" + image
   const navigation = useNavigation();
-
 
   return (
     <TouchableOpacity 
@@ -18,7 +17,10 @@ export default function cards({title, image, adult, releaseDate, vote ,overview}
                 title:title,
                 image:source,
                 adult:adult,
-                overview: overview
+                overview: overview,
+                genres:genres,
+                url:url,
+                vote:vote
             })
 }}
         >

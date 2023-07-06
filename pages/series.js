@@ -1,11 +1,11 @@
 import axios from 'axios'
 import React ,{ useState, useEffect } from 'react'
-import { SafeAreaView, FlatList } from 'react-native'
+import { SafeAreaView, FlatList, View } from 'react-native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import Explanations from './Explanations';
-import Cards from '../components/card/card'
-import Loading from '../components/Loading/Loading';
+import Cards from '../components/Cardss/card'
+import Loading from '../components/LoadingFile/Loading';
 import SearchButtons from '../components/serachButton/searchButtons';
 
 const discoverURL = "https://api.themoviedb.org/3/discover/tv?api_key=11a100e568ee3b2467f04ee72c058315"
@@ -41,7 +41,8 @@ function App(){
     )
   } else {
     return (
-      <SafeAreaView style={{flex: 1, backgroundColor: '#292929'}}>
+      
+      <SafeAreaView style={{ backgroundColor: '#292929'}}>
         <SearchButtons
           genreURL={genreURL}
           discoverUrl={discoverURL}
@@ -49,12 +50,16 @@ function App(){
           setIsLoading={setIsLoading}
           movieList={seriesList}
           setMovieList={setSeriesList}></SearchButtons>
+      <View style={{marginBottom:190, backgroundColor:"#292929"}}>
         <FlatList
           numColumns={2}
           data={seriesList}
           renderItem={renderData}
           keyExtractor={item => item.id.toString()}></FlatList>
+          </View>
       </SafeAreaView>
+
+
     );
   }
 
@@ -76,7 +81,11 @@ const renderData = ({item}) =>
     title={item.original_name} 
     image={item.backdrop_path} 
     releaseDate={item.first_air_date}
-    vote={item.vote_average} />)
+    vote={item.vote_average}
+    genres={genreURL}
+    adult={item.adult}
+    url={item}
+    overview={item.overview}/>)
 
 
 export default SeriesStack;

@@ -3,8 +3,8 @@ import { SafeAreaView, FlatList,  } from 'react-native'
 import axios from 'axios';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import Famous from '../components/Famaus/famous';
-import Loading from '../components/Loading/Loading';
+import Famous from '../components/FamausFile/famous';
+import Loading from '../components/LoadingFile/Loading';
 import InfoFamous from './InfoFamous';
 
 
@@ -48,14 +48,17 @@ function App(){
             )
     } else {
         return (
-            <SafeAreaView style={{backgroundColor:"#292929",flex:1}}>
+            <SafeAreaView style={{flex:1,backgroundColor:"#292929"}}>
+                <SafeAreaView style={{backgroundColor:"#292929",marginBottom:40}}>
                 <FlatList
                     numColumns={2}
                     data={famousList}
                     renderItem={renderData}
                     keyExtractor={(item) => item.id.toString()}
                 />
+                </SafeAreaView>
             </SafeAreaView>
+
         )
     }
 }

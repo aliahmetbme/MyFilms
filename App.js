@@ -22,10 +22,10 @@ const Informations = () => {
         ),tabBarStyle:styles.tabBar, headerShown:false
       })} >
         
-        <Tab.Screen name="Famous" component={popularPeople} />
-        <Tab.Screen name="Movies" component={movies} />
-        <Tab.Screen name="Series" component={series} />
-        <Tab.Screen name="Search" component={Search}  />
+        <Tab.Screen name="FamousScreen" component={popularPeople} />
+        <Tab.Screen name="MoviesScreen" component={movies} />
+        <Tab.Screen name="SeriesScreen" component={series} />
+        <Tab.Screen name="SearchScreen" component={Search}  />
       </Tab.Navigator>
    
 
@@ -36,7 +36,10 @@ const styles = StyleSheet.create({
   tabBar: {
     backgroundColor: "black",
     height:40,    
-    borderTopWidth:0
+    borderTopWidth:0,
+    borderRadius:10,
+    position:"absolute",
+    margin:5
     }
 });
 

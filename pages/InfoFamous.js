@@ -10,6 +10,7 @@ const InfoFamous = ({route}) => {
     const popularity = route.params.popi
 
   return (
+    <View style={{ backgroundColor:"black"}}>
     <ScrollView style={styles.container}>
       <Image style={styles.imageStyle} source={{uri: peopleImage}}></Image>
       <Text style={styles.namestyle}>{name}</Text>
@@ -25,6 +26,7 @@ const InfoFamous = ({route}) => {
         data={known_for}
         renderItem={renderData}></FlatList>
     </ScrollView>
+    </View>
   )
 }
 
@@ -44,7 +46,8 @@ export default InfoFamous
 
 const styles = StyleSheet.create({
     container:{
-        backgroundColor:"black"
+        backgroundColor:"black",
+        marginBottom:50,
     },
     imageStyle:{
         width:200,

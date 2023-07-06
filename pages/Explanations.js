@@ -2,48 +2,76 @@ import { Text, View, ScrollView, StyleSheet, Image, Dimensions, FlatList } from 
 import React, {useState, useEffect} from 'react'
 import axios from 'axios';
 
-const URL = 'https://api.themoviedb.org/3/discover/movie?api_key=11a100e568ee3b2467f04ee72c058315';
+const genreURL = 'https://api.themoviedb.org/3/genre/movie/list?api_key=11a100e568ee3b2467f04ee72c058315';
+
 
 const Explanations = ({route}) => {
 
   const overview = route.params.overview
   const Images = route.params.image
   const title = route.params.title
-  const [genre, setGenre] = useState(route.params.genre)
+  const [genres, setGenres] = useState([])
+  const [x, setX] = useState([])
+  const vote = route.params.vote
+  
+
+  async function fetchData() {
+    const response = await axios.get(genreURL)
+    setX(response.data.genres)
+    console.log(response.data.genres,"vsdf")
+   setGenres(route.params.url.genre_ids)
+  }
+
+  function renderData({ item }) {
+    const genreName = x.find(genre => genre.id === item)?.name;
+    return (
+      <Text style={{
+        justifyContent:"center",
+        textAlign:"center",
+        color:"white",            
+        borderRadius:10,
+        backgroundColor:'#292929',
+        margin:10,
+        borderColor:'red',
+        borderWidth:1,
+        padding:5,
+        width:Dimensions.get("screen").width / 4}}>{genreName}</Text>
+    );
+  }
+
+  useEffect(() => {fetchData() }, []);
 
   return (
-    <ScrollView style={styles.container}>
+    <View style={{backgroundColor:"black"}}>
+      <ScrollView style={styles.container}>
       <Image source={{uri : Images}} style={styles.imageStyle} ></Image>
       <Text style={styles.titleStyle}>{title}</Text>
       <FlatList
-        data={genre}
-        renderItem={renderData}></FlatList>
+        horizontal={true}
+        data={genres}
+        renderItem={renderData}
+     ></FlatList>
+      <View style={{height:8,flexDirection:"row",marginRight:40,marginLeft:40,margin:20,borderRadius:20}}>
+        <View style={{flex:vote/10, backgroundColor:"red",borderRadius:10}}></View>
+        <View style={{flex:1-vote/10,backgroundColor:"white",borderRadius:10}}></View>
+      </View>
       <View>
         <Text style={[styles.overview, {fontSize:18, fontWeight:"900", paddingBottom:2}]}>OVERVIEW : </Text>
         <Text style={styles.overview}>{overview}</Text>
-      </View>
-     
+      </View> 
     </ScrollView>
+    </View>
+
   )
 }
 
 
-async function fetchFilteredData(item) {
-  const response = await axios.get(props.URL, {params: {with_genres: item.id}});
-  setGenre(response.data.results); 
-  console.log(genre,"genre")
-}
-
-function renderData({item}) {
-  fetchFilteredData(item)
-  return(
-    <Text>{item.name} asdjljs</Text>
-  )
-}
+ 
 
 const styles = StyleSheet.create({
   container:{
-    backgroundColor:"black"
+    backgroundColor:"black",
+    marginBottom:50,
   },
   overview:{
     color:"white",
