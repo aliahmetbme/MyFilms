@@ -4,7 +4,7 @@ import style from './cardstyle';
 import { useNavigation } from '@react-navigation/native';
 
 
-export default function cards({title, image, adult, releaseDate, vote }) {
+export default function cards({title, image, adult, releaseDate, vote ,overview}) {
 
   const source =  "https://image.tmdb.org/t/p/original" + image
   const navigation = useNavigation();
@@ -13,7 +13,14 @@ export default function cards({title, image, adult, releaseDate, vote }) {
   return (
     <TouchableOpacity 
         style={style.container} 
-        onPress={() => {navigation.navigate("Explanation")}}
+        onPress={() => {navigation.navigate("Explanation",
+            {
+                title:title,
+                image:source,
+                adult:adult,
+                overview: overview
+            })
+}}
         >
         <Image 
             source={{uri : source}} 

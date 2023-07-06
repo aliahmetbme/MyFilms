@@ -56,6 +56,7 @@ export default StyleSheet.create({
         alignSelf:"flex-end",
         flexDirection: 'row',
         height:5,
+        borderRadius:20
    
     }
 

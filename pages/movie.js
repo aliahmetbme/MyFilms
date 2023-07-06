@@ -82,6 +82,8 @@ const renderData = ({item}) => (
     image={item.backdrop_path}
     releaseDate={item.release_date}
     vote={item.vote_average}
+    overview={item.overview}
+    genres={item.genre_ids}
     
   />
 );

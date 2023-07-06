@@ -5,7 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import Famous from '../components/Famaus/famous';
 import Loading from '../components/Loading/Loading';
-import Explanations from './Explanations';
+import InfoFamous from './InfoFamous';
 
 
 const URL = "https://api.themoviedb.org/3/person/popular?api_key=11a100e568ee3b2467f04ee72c058315"
@@ -35,6 +35,8 @@ function App(){
             name={item.name}
             known_for_department={item.known_for_department}
             profile_path={item.profile_path}
+            known_for={item.known_for}
+            popularity={item.popularity}
         ></Famous>
     )
 
@@ -64,7 +66,7 @@ const PopulerStack = () => {
     return(
         <Stack.Navigator screenOptions={{headerShown:false}}>
             <Stack.Screen name="Famous" component={App} />
-            <Stack.Screen name="Explanations" component={Explanations} />
+            <Stack.Screen name="FamousInformation" component={InfoFamous} />
         </Stack.Navigator>
     )
 }
