@@ -1,9 +1,11 @@
 import React, {useState, useEffect} from 'react'
 import { SafeAreaView, FlatList,  } from 'react-native'
 import axios from 'axios';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import Famous from '../components/Famaus/famous';
 import Loading from '../components/Loading/Loading';
+import Explanations from './Explanations';
 
 
 const URL = "https://api.themoviedb.org/3/person/popular?api_key=11a100e568ee3b2467f04ee72c058315"
@@ -56,6 +58,16 @@ function App(){
     }
 }
 
+const PopulerStack = () => {
+
+    const Stack = createNativeStackNavigator()
+    return(
+        <Stack.Navigator screenOptions={{headerShown:false}}>
+            <Stack.Screen name="Famous" component={App} />
+            <Stack.Screen name="Explanations" component={Explanations} />
+        </Stack.Navigator>
+    )
+}
 
 
-export default App;
+export default PopulerStack;

@@ -1,7 +1,9 @@
 import axios from 'axios'
 import React ,{ useState, useEffect } from 'react'
 import { SafeAreaView, FlatList } from 'react-native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
+import Explanations from './Explanations';
 import Cards from '../components/card/card'
 import Loading from '../components/Loading/Loading';
 import SearchButtons from '../components/serachButton/searchButtons';
@@ -58,6 +60,17 @@ function App(){
 
 }
 
+const SeriesStack = () => {
+
+  const Stack = createNativeStackNavigator()
+  return(
+      <Stack.Navigator screenOptions={{headerShown:false}}>
+          <Stack.Screen name="Series" component={App} />
+          <Stack.Screen name="Explanations" component={Explanations} />
+      </Stack.Navigator>
+  )
+}
+
 const renderData = ({item}) => 
 (<Cards 
     title={item.original_name} 
@@ -66,4 +79,4 @@ const renderData = ({item}) =>
     vote={item.vote_average} />)
 
 
-export default App;
+export default SeriesStack;

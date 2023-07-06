@@ -7,22 +7,22 @@ export default StyleSheet.create(
           },
           seperator:{
             width:Dimensions.get("screen").width,
-            height:1,
             backgroundColor:'gray'
           },
           button:{
             borderRadius:10,
-            backgroundColor:'gray',
-            padding:5,
+            backgroundColor:'black',
             margin:10,
-            borderColor:'black',
+            borderColor:'red',
             borderWidth:1,
+            padding:5,
             width:Dimensions.get("screen").width / 4
           },
           buttonText:{
-            color:'black',
+            color:'white',
             fontSize:12,
-            textAlign:'center'
+            textAlign:'center',
+            justifyContent :  "center"
           }
     }
 )

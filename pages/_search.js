@@ -4,7 +4,7 @@ import Searching from "../components/SearchBar/searchBar"
 
 const Search = () => {
   return (
-    <View>
+    <View style={{backgroundColor:"red"}}>
       <Searching></Searching>
     </View>
   )

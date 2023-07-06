@@ -3,7 +3,6 @@ import { StyleSheet, Dimensions } from 'react-native'
 
 export default StyleSheet.create({
     container:{
-        justifyContent:"space-evenly",
         backgroundColor:"black",
         borderRadius:10,
         margin:10,

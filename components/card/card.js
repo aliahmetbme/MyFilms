@@ -1,16 +1,26 @@
 import React from 'react';
 import {SafeAreaView, Text, TouchableOpacity, Image, View} from 'react-native';
 import style from './cardstyle';
+import { useNavigation } from '@react-navigation/native';
 
 
-export default function cards({title, image, adult, releaseDate, vote}) {
+export default function cards({title, image, adult, releaseDate, vote }) {
 
   const source =  "https://image.tmdb.org/t/p/original" + image
+  const navigation = useNavigation();
+
 
   return (
-    <TouchableOpacity style={style.container}>
-        <Image source={{uri : source}} style={style.Image}></Image>
-        <Text style={style.title}>{title}</Text>
+    <TouchableOpacity 
+        style={style.container} 
+        onPress={() => {navigation.navigate("Explanation")}}
+        >
+        <Image 
+            source={{uri : source}} 
+            style={style.Image}></Image>
+        <Text 
+            style={style.title}>{title}
+        </Text>
         <View style={style.bottom_container}>
             <Text style={style.date}>Relase Date: {releaseDate}</Text>
             <View>
