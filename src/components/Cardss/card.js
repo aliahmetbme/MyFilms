@@ -12,7 +12,7 @@ export default function cards({title, image, adult, releaseDate, vote ,overview,
   return (
     <TouchableOpacity 
         style={style.container} 
-        onPress={() => {navigation.navigate("Explanation",
+        onPress={() => {navigation.navigate("Details",
             {
                 title:title,
                 image:source,

@@ -9,7 +9,8 @@ export default StyleSheet.create({
         padding:15,
         paddingTop:0,
         alignSelf:"center",
-        flex:1
+        flex:1,
+        overflow:"hidden"
         
     },
     Image:{

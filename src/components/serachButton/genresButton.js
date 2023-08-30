@@ -4,9 +4,9 @@ import axios from 'axios';
 
 import Button from './buttons';
 import style from './style';
+import { useFetch } from '../../Hooks/useFetch';
 
 function SearchButtonsForMovie(props) {
-
   const [genres, setGenres] = useState([]);
 
   async function fetchData() {

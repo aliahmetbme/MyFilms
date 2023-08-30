@@ -12,12 +12,11 @@ export const useFetch = (URL) => {
         fetchData()
     },[])
 
-
     async function fetchData(){
         try{
             setLoading(true)
             const response = await axios.get(URL)
-            setData(URL)
+            setData(response.data.results)
             setLoading(false)
         } catch (error) {
             setError(error)

@@ -3,6 +3,7 @@ import { StyleSheet, Dimensions } from 'react-native'
 export default StyleSheet.create(
     {
         container:{
+            overflow:"hidden",
             marginTop:10,
             justifyContent:"center",
           },

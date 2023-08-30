@@ -2,7 +2,7 @@ import { Text, View, ScrollView, StyleSheet, Image, Dimensions, FlatList } from 
 import React, {useState, useEffect} from 'react'
 import axios from 'axios';
 
-const genreURL = 'https://api.themoviedb.org/3/genre/movie/list?api_key=11a100e568ee3b2467f04ee72c058315';
+const genreURL = 'https://api.themoviedb.org/3/genre/tv/list?api_key=11a100e568ee3b2467f04ee72c058315';
 
 
 const Explanations = ({route}) => {
