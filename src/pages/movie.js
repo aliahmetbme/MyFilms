@@ -5,8 +5,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import Cards from '../components/Cardss/card';
 import Loading from '../components/LoadingFile/Loading';
-import SearchButtons from '../components/serachButton/searchButtons';
-import Explanations from './Explanations';
+import SearchButtons from '../components/serachButton/genresButton';
+import Explanations from './Details';
 import Config from 'react-native-config';
 
 const discoverUrl = "https://api.themoviedb.org/3/discover/movie?include_adult=true&include_video=false&language=tr&page=2&sort_by=popularity.desc&api_key=11a100e568ee3b2467f04ee72c058315"

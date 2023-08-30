@@ -1,19 +1,22 @@
 import axios from 'axios'
 import React ,{ useState, useEffect } from 'react'
-import { SafeAreaView, FlatList, View } from 'react-native'
+import { SafeAreaView, FlatList, View , Text} from 'react-native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Config from 'react-native-config';
 
-import Explanations from './Explanations';
+import Explanations from './Details';
 import Cards from '../components/Cardss/card'
 import Loading from '../components/LoadingFile/Loading';
-import SearchButtons from '../components/serachButton/searchButtons';
-import { Text } from 'react-native-paper';
+import GenresButton from '../components/serachButton/genresButton';
 
+const discoverSeriesURL = Config.API_HEAD + Config.API_TV + Config.API_KEY
+const genreTvURL = Config.API_HEAD + Config.GENRE_TV + Config.API_KEY
 const discoverURL = "https://api.themoviedb.org/3/discover/tv?api_key=11a100e568ee3b2467f04ee72c058315"
 const genreURL = "https://api.themoviedb.org/3/genre/tv/list?api_key=11a100e568ee3b2467f04ee72c058315"
 
 function App(){
     
+
     const [isLoading, setIsLoading] = useState(false);
     const [seriesList, setSeriesList] = useState([])
 
@@ -29,14 +32,14 @@ function App(){
     if (isLoading) {
     return  (   
     <SafeAreaView style={{flex: 1, backgroundColor: '#292929'}}>
-        <SearchButtons
+        <GenresButton
             discoverUrl={discoverURL}
             genreURL={genreURL}
             isLoading={isLoading}
             setIsLoading={setIsLoading}
             movieList={seriesList}
             setMovieList={setSeriesList}>
-        </SearchButtons>
+        </GenresButton>
         <Loading />    
     </SafeAreaView>
     )
@@ -44,13 +47,13 @@ function App(){
     return (
       
       <SafeAreaView style={{ backgroundColor: '#292929', flex:1}}>
-        <SearchButtons
+        <GenresButton
           genreURL={genreURL}
           discoverUrl={discoverURL}
           isLoading={isLoading}
           setIsLoading={setIsLoading}
           movieList={seriesList}
-          setMovieList={setSeriesList}></SearchButtons>
+          setMovieList={setSeriesList}></GenresButton>
         <FlatList
           numColumns={2}
           data={seriesList}

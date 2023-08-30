@@ -1,1 +1,1 @@
-export {default} from "./searchButtons"
+export {default} from "./genresButton"

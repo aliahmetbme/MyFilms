@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import React, {useEffect, useState} from 'react'
 import axios from 'axios'
 
-export const useFetch = () => {
+export const useFetch = (URL) => {
     const [page, setPage] = useState(0)
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(false)

@@ -26,23 +26,24 @@ const Explanations = ({route}) => {
     const genreName = x.find(genre => genre.id === item)?.name;
     return (
       <Text style={{
+        overflow:"hidden",
         justifyContent:"center",
         textAlign:"center",
         color:"white",            
-        borderRadius:10,
+        borderRadius:20,
         backgroundColor:'#292929',
         margin:10,
         borderColor:'red',
         borderWidth:1,
-        padding:5,
-        width:Dimensions.get("screen").width / 4}}>{genreName}</Text>
+        padding:10}
+      }>{genreName}</Text>
     );
   }
 
   useEffect(() => {fetchData() }, []);
 
   return (
-    <View style={{backgroundColor:"black"}}>
+    <View style={{backgroundColor:"black",flex:1}}>
       <ScrollView style={styles.container}>
       <Image source={{uri : Images}} style={styles.imageStyle} ></Image>
       <Text style={styles.titleStyle}>{title}</Text>
@@ -55,10 +56,8 @@ const Explanations = ({route}) => {
         <View style={{flex:vote/10, backgroundColor:"red",borderRadius:10}}></View>
         <View style={{flex:1-vote/10,backgroundColor:"white",borderRadius:10}}></View>
       </View>
-      <View>
-        <Text style={[styles.overview, {fontSize:18, fontWeight:"900", paddingBottom:2}]}>OVERVIEW : </Text>
-        <Text style={styles.overview}>{overview}</Text>
-      </View> 
+      <Text style={[styles.overview, {fontSize:18, fontWeight:"900", paddingBottom:2}]}>OVERVIEW : </Text>
+      <Text style={styles.overview}>{overview}</Text>
     </ScrollView>
     </View>
 
@@ -71,7 +70,6 @@ const Explanations = ({route}) => {
 const styles = StyleSheet.create({
   container:{
     backgroundColor:"black",
-    marginBottom:50,
   },
   overview:{
     color:"white",
