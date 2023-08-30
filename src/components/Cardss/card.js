@@ -31,10 +31,10 @@ export default function cards({title, image, adult, releaseDate, vote ,overview,
             style={style.title}>{title}
         </Text>
         <View style={style.bottom_container}>
-            <Text style={style.date}>Relase Date: {releaseDate}</Text>
+            <Text style={style.date}>{releaseDate}</Text>
             <View>
                 {adult ? (
-                    <Text style={style.adult}> it is not ok dssd for child </Text>
+                    <Text style={style.adult}> 🔞 🔞 </Text>
                 ) : (
                     <Text style={style.adult}> 🧒 👧 </Text>
                 )}

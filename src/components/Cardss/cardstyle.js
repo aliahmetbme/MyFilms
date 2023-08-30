@@ -6,11 +6,10 @@ export default StyleSheet.create({
         backgroundColor:'#010101',
         margin:10,
         borderRadius:10,
-        padding:10,
+        padding:15,
         paddingTop:0,
-        width:(5 * Dimensions.get("screen").width / 11),
-        height:(Dimensions.get("screen").height/3),
         alignSelf:"center",
+        flex:1
         
     },
     Image:{
@@ -28,36 +27,37 @@ export default StyleSheet.create({
         fontSize:18,
         color:"white",
         textAlign:"left",
+        textAlignVertical:"center",
     },
 
     bottom_container:{
         flexDirection:"row",
-        paddingTop:3,
-        paddingBottom:5,
-        borderRadius:10
+        marginVertical:10,
+        borderRadius:10,
+        flexWrap:"wrap",
+        justifyContent:"space-between",
+        alignItems:"center",
+        flex:1
     },
 
     adult:{
         color:"white",
         fontSize:15,
+        paddingEnd:10,
         textAlign:"right",
         textAlignVertical:"center"
 
     },
     date:{
         color:"white",
-        fontSize:8,
+        fontSize:12,
         textAlignVertical:"center",
         
     },
     vote:{
-        marginBottom:"auto",
-        justifyContent:"flex-end",
-        alignSelf:"flex-end",
         flexDirection: 'row',
         height:5,
-        borderRadius:20
-   
+        borderRadius:20,   
     }
 
 })

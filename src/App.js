@@ -1,8 +1,9 @@
 import 'react-native-gesture-handler';
+import 'react-native-config';
 import * as React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
-import { StyleSheet, View } from 'react-native'
+import { Platform, StyleSheet, View } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import popularPeople from "./pages/populers"
@@ -35,19 +36,17 @@ const Informations = () => {
 const styles = StyleSheet.create({
   tabBar: {
     backgroundColor: "black",
-    height:40,    
-    borderTopWidth:0,
-    borderRadius:10,
-    position:"absolute",
-    margin:5
+    height:Platform.OS ==="android" ? 50 : 90,    
+    borderTopWidth:2,
+    borderTopColor:"red"
     }
 });
 
 const TabBarIcon = ({ focused, color, size }) => {
-  const iconName = focused ? 'rocket' : 'star'; // Örnek olarak 'rocket' ve 'star' ikonlarını kullanıyoruz
-
+  const iconName = focused ? 'film' : 'star'; // Örnek olarak 'rocket' ve 'star' ikonlarını kullanıyoruz
+  
   return (
-    <Icon name="rocket" size={15} color="red" />
+    <Icon name={iconName}size={25} color="red" />
   );
 };
 

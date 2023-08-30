@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { SafeAreaView, FlatList,  } from 'react-native'
+import { SafeAreaView, FlatList, Platform,  } from 'react-native'
 import axios from 'axios';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -8,7 +8,7 @@ import Loading from '../components/LoadingFile/Loading';
 import InfoFamous from './InfoFamous';
 
 
-const URL = "https://api.themoviedb.org/3/person/popular?api_key=11a100e568ee3b2467f04ee72c058315"
+const URL = "https://api.themoviedb.org/3/person/popular?page=112&api_key=11a100e568ee3b2467f04ee72c058315"
 
 
 function App(){
@@ -49,14 +49,12 @@ function App(){
     } else {
         return (
             <SafeAreaView style={{flex:1,backgroundColor:"#292929"}}>
-                <SafeAreaView style={{backgroundColor:"#292929",marginBottom:40}}>
                 <FlatList
                     numColumns={2}
                     data={famousList}
                     renderItem={renderData}
                     keyExtractor={(item) => item.id.toString()}
                 />
-                </SafeAreaView>
             </SafeAreaView>
 
         )
@@ -69,7 +67,7 @@ const PopulerStack = () => {
     return(
         <Stack.Navigator screenOptions={{headerShown:false}}>
             <Stack.Screen name="Famous" component={App} />
-            <Stack.Screen name="FamousInformation" component={InfoFamous} />
+            <Stack.Screen name="FamousInformation" component={InfoFamous}/>
         </Stack.Navigator>
     )
 }

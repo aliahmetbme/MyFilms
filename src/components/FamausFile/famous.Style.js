@@ -6,6 +6,8 @@ export default StyleSheet.create({
         backgroundColor:"black",
         borderRadius:10,
         margin:10,
+        alignSelf:"center",
+        flex:1
     },
     name:{
         color:"white",

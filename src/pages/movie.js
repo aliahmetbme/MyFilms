@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { SafeAreaView, FlatList, Vibration, View,} from 'react-native';
+import { SafeAreaView, FlatList, Vibration, View, Platform,} from 'react-native';
 import axios from 'axios';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -7,8 +7,10 @@ import Cards from '../components/Cardss/card';
 import Loading from '../components/LoadingFile/Loading';
 import SearchButtons from '../components/serachButton/searchButtons';
 import Explanations from './Explanations';
+import Config from 'react-native-config';
 
-const discoverUrl = 'https://api.themoviedb.org/3/discover/movie?api_key=11a100e568ee3b2467f04ee72c058315';
+const discoverUrl = "https://api.themoviedb.org/3/discover/movie?include_adult=true&include_video=false&language=tr&page=2&sort_by=popularity.desc&api_key=11a100e568ee3b2467f04ee72c058315"
+const URL = `${Config.API_MOVIE}${Config.API_KEY}`
 const genreURL = 'https://api.themoviedb.org/3/genre/movie/list?api_key=11a100e568ee3b2467f04ee72c058315';
 
 function Movies() {
@@ -17,10 +19,9 @@ function Movies() {
 
 
   async function fetchData() {
-    setIsLoading(true);
+    console.log(URL,"c")
     const response = await axios.get(discoverUrl);
     const movieData = response.data;
-    setIsLoading(false);
     console.log(movieData);
     setMovieList(movieData.results);
   }
@@ -42,7 +43,7 @@ function Movies() {
     )
   } else {
     return (
-        <SafeAreaView style={{backgroundColor:"#292929"}}>
+        <SafeAreaView style={{backgroundColor:"#292929",flex:1}}>
           <SearchButtons
             genreURL={genreURL}
             discoverUrl={discoverUrl}
@@ -50,13 +51,11 @@ function Movies() {
             setIsLoading={setIsLoading}
             movieList={movieList}
             setMovieList={setMovieList}></SearchButtons>
-          <View style={{marginBottom:160, backgroundColor:"#292929"}}>
           <FlatList
             numColumns={2}
             data={movieList}
             renderItem={renderData}
             keyExtractor={item => item.id.toString()}></FlatList>
-            </View>
        </SafeAreaView>
     );
   }
@@ -70,7 +69,8 @@ const MovieStack = () => {
   return(
       <Stack.Navigator screenOptions={{headerShown:false}}>
         <Stack.Screen name="Movies" component={Movies} />
-        <Stack.Screen name="Explanation" component={Explanations} />
+        <Stack.Screen name="Explanation" component={Explanations} 
+        options={{headerShown:Platform.OS === "ios",headerTransparent:true, headerTitle:" ", headerBackTitleVisible:false}}/>
       </Stack.Navigator>
 
   )
@@ -85,10 +85,7 @@ const renderData = ({item}) => (
     vote={item.vote_average}
     overview={item.overview}
     url={item}
-    genress={genreURL}
-    
-
-    
+    genress={genreURL}   
   />
 );
 

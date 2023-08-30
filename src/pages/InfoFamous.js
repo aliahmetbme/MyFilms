@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, Dimensions, ScrollView, FlatList } from 'react-native'
+import { StyleSheet, Text, View, Image, Dimensions, ScrollView, FlatList, SafeAreaView } from 'react-native'
 import React from 'react'
 
 const InfoFamous = ({route}) => {
@@ -10,7 +10,7 @@ const InfoFamous = ({route}) => {
     const popularity = route.params.popi
 
   return (
-    <View style={{ backgroundColor:"black"}}>
+    <SafeAreaView style={{ backgroundColor:"black", flex:1}}>
     <ScrollView style={styles.container}>
       <Image style={styles.imageStyle} source={{uri: peopleImage}}></Image>
       <Text style={styles.namestyle}>{name}</Text>
@@ -26,7 +26,7 @@ const InfoFamous = ({route}) => {
         data={known_for}
         renderItem={renderData}></FlatList>
     </ScrollView>
-    </View>
+    </SafeAreaView>
   )
 }
 
@@ -47,8 +47,7 @@ export default InfoFamous
 const styles = StyleSheet.create({
     container:{
         backgroundColor:"black",
-        marginBottom:50,
-    },
+      },
     imageStyle:{
         width:200,
         height:300,

@@ -7,6 +7,7 @@ import Explanations from './Explanations';
 import Cards from '../components/Cardss/card'
 import Loading from '../components/LoadingFile/Loading';
 import SearchButtons from '../components/serachButton/searchButtons';
+import { Text } from 'react-native-paper';
 
 const discoverURL = "https://api.themoviedb.org/3/discover/tv?api_key=11a100e568ee3b2467f04ee72c058315"
 const genreURL = "https://api.themoviedb.org/3/genre/tv/list?api_key=11a100e568ee3b2467f04ee72c058315"
@@ -42,7 +43,7 @@ function App(){
   } else {
     return (
       
-      <SafeAreaView style={{ backgroundColor: '#292929'}}>
+      <SafeAreaView style={{ backgroundColor: '#292929', flex:1}}>
         <SearchButtons
           genreURL={genreURL}
           discoverUrl={discoverURL}
@@ -50,13 +51,11 @@ function App(){
           setIsLoading={setIsLoading}
           movieList={seriesList}
           setMovieList={setSeriesList}></SearchButtons>
-      <View style={{marginBottom:190, backgroundColor:"#292929"}}>
         <FlatList
           numColumns={2}
           data={seriesList}
           renderItem={renderData}
           keyExtractor={item => item.id.toString()}></FlatList>
-          </View>
       </SafeAreaView>
 
 
