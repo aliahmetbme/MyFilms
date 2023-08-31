@@ -8,36 +8,28 @@ import Explanations from './Details';
 import Cards from '../components/Cardss/card'
 import Loading from '../components/LoadingFile/Loading';
 import GenresButton from '../components/serachButton/genresButton';
-import { useFetch } from '../Hooks/useFetch';
+import { fetchData } from "../API_helpers/Fetch";
 
-const discoverSeriesURL = Config.API_HEAD + Config.API_TV + Config.API_KEY
-const genreTvURL = Config.API_HEAD + Config.GENRE_TV + Config.API_KEY
-const discoverURL = "https://api.themoviedb.org/3/discover/tv?api_key=11a100e568ee3b2467f04ee72c058315"
-const genreURL = "https://api.themoviedb.org/3/genre/tv/list?api_key=11a100e568ee3b2467f04ee72c058315"
+const discoverSeriesURL = Config.API_HEAD + Config.API_TV 
+const genreTvURL = Config.API_HEAD + Config.GENRE_TV 
 
 function App() {
-  const { data, loading, error } = useFetch(discoverURL)
-
-  const [isLoading, setIsLoading] = useState(false);
   const [seriesList, setSeriesList] = useState([])
-  useEffect(() => { fetchData() }, [])
+  // loading için çözüm bul
+  useEffect(() => { getSeries() }, [])
 
-  async function fetchData() {
-    setIsLoading(true)
-    const response = await axios.get(discoverURL);
-    const seriesdata = response.data
-    setIsLoading(false)
-    setSeriesList(seriesdata.results)
+  async function getSeries() {
+    const data = await fetchData(discoverSeriesURL, {})
+    setSeriesList(data)
   }
 
-  if (isLoading) {
+  if (loading) {
     return (
       <SafeAreaView style={{ flex: 1, backgroundColor: '#292929' }}>
         <GenresButton
-          discoverUrl={discoverURL}
-          genreURL={genreURL}
-          isLoading={isLoading}
-          setIsLoading={setIsLoading}
+          discoverUrl={discoverSeriesURL}
+          genreURL={genreTvURL}
+          isLoading={loading}
           movieList={seriesList}
           setMovieList={setSeriesList}>
         </GenresButton>
@@ -46,26 +38,21 @@ function App() {
     )
   } else {
     return (
-
       <SafeAreaView style={{ backgroundColor: '#292929', flex: 1 }}>
-        <GenresButton
-          genreURL={genreURL}
-          discoverUrl={discoverURL}
-          isLoading={isLoading}
-          setIsLoading={setIsLoading}
-          movieList={seriesList}
-          setMovieList={setSeriesList}></GenresButton>
         <FlatList
+          ListHeaderComponent={<GenresButton
+            genreURL={genreTvURL}
+            discoverUrl={discoverSeriesURL}
+            isLoading={loading}
+            movieList={seriesList}
+            setMovieList={setSeriesList}></GenresButton>}
           numColumns={2}
           data={seriesList}
           renderItem={renderData}
           keyExtractor={item => item.id.toString()}></FlatList>
       </SafeAreaView>
-
-
     );
   }
-
 }
 
 const SeriesStack = () => {
@@ -85,7 +72,7 @@ const renderData = ({ item }) =>
   image={item.backdrop_path}
   releaseDate={item.first_air_date}
   vote={item.vote_average}
-  genres={genreURL}
+  genres={genreTvURL}
   adult={item.adult}
   url={item}
   overview={item.overview} />)

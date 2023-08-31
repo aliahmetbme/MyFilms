@@ -10,7 +10,7 @@ import Explanations from './Details';
 import Config from 'react-native-config';
 
 const discoverUrl = "https://api.themoviedb.org/3/discover/movie?include_adult=true&include_video=false&language=tr&page=2&sort_by=popularity.desc&api_key=11a100e568ee3b2467f04ee72c058315"
-const URL = `${Config.API_MOVIE}${Config.API_KEY}`
+const URL = `${Config.API_HEAD}${Config.API_MOVIE}${Config.API_KEY}`
 const genreURL = 'https://api.themoviedb.org/3/genre/movie/list?api_key=11a100e568ee3b2467f04ee72c058315';
 
 function Movies() {
@@ -20,7 +20,7 @@ function Movies() {
 
   async function fetchData() {
     console.log(URL,"c")
-    const response = await axios.get(discoverUrl);
+    const response = await axios.get(URL);
     const movieData = response.data;
     console.log(movieData);
     setMovieList(movieData.results);
@@ -69,7 +69,7 @@ const MovieStack = () => {
   return(
       <Stack.Navigator screenOptions={{headerShown:false}}>
         <Stack.Screen name="Movies" component={Movies} />
-        <Stack.Screen name="Explanation" component={Explanations} 
+        <Stack.Screen name="Details" component={Explanations} 
         options={{headerShown:Platform.OS === "ios",headerTransparent:true, headerTitle:" ", headerBackTitleVisible:false}}/>
       </Stack.Navigator>
 

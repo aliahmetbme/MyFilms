@@ -1,8 +1,7 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React, {useEffect, useState} from 'react'
+import {useEffect, useState} from 'react'
 import axios from 'axios'
 
-export const useFetch = (URL) => {
+export const useFetch = (URL, params) => {
     const [page, setPage] = useState(0)
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(false)
@@ -15,12 +14,18 @@ export const useFetch = (URL) => {
     async function fetchData(){
         try{
             setLoading(true)
-            const response = await axios.get(URL)
-            setData(response.data.results)
+            const response = await axios.get(URL, {
+                params: params,
+                headers: {
+                  'Authorization' : 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxMWExMDBlNTY4ZWUzYjI0NjdmMDRlZTcyYzA1ODMxNSIsInN1YiI6IjY0YTI5MzA0ZThkMDI4MDEzOTE1YzJhZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.HJJ_fSLA0UJ4jyNJSGnHs7tT01LTTqunViGcHIextpE' 
+                }
+            })
+            setData(response.data)
             setLoading(false)
         } catch (error) {
             setError(error)
             setLoading(false)
+            console.log(error)
         }
     }
 

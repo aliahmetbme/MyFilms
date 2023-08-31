@@ -19,6 +19,7 @@ export default StyleSheet.create(
             borderColor:'red',
             borderWidth:1,
             padding:15,
+            paddingVertical:10
           },
           buttonText:{
             color:'white',

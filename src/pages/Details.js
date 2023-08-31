@@ -25,18 +25,20 @@ const Explanations = ({route}) => {
   function renderData({ item }) {
     const genreName = x.find(genre => genre.id === item)?.name;
     return (
-      <Text style={{
-        overflow:"hidden",
-        justifyContent:"center",
-        textAlign:"center",
-        color:"white",            
-        borderRadius:20,
-        backgroundColor:'#292929',
-        margin:10,
-        borderColor:'red',
-        borderWidth:1,
-        padding:10}
-      }>{genreName}</Text>
+      genreName ? (
+        <Text style={{
+          overflow: "hidden",
+          justifyContent: "center",
+          textAlign: "center",
+          color: "white",            
+          borderRadius: 20,
+          backgroundColor: '#292929',
+          margin: 10,
+          borderColor: 'red',
+          borderWidth: 1,
+          padding: 10
+        }}>{genreName}</Text>
+      ) : null
     );
   }
 
@@ -52,11 +54,11 @@ const Explanations = ({route}) => {
         data={genres}
         renderItem={renderData}
      ></FlatList>
-      <View style={{height:8,flexDirection:"row",marginRight:40,marginLeft:40,margin:20,borderRadius:20}}>
-        <View style={{flex:vote/10, backgroundColor:"red",borderRadius:10}}></View>
-        <View style={{flex:1-vote/10,backgroundColor:"white",borderRadius:10}}></View>
+      <View style={{height:8,flexDirection:"row",marginRight:40,marginLeft:40,margin:20,borderRadius:40}}>
+        <View style={{flex:vote/10, backgroundColor:"red",borderRadius:20}}></View>
+        <View style={{flex:1-vote/10,backgroundColor:"white",borderRadius:20}}></View>
       </View>
-      <Text style={[styles.overview, {fontSize:18, fontWeight:"900", paddingBottom:2}]}>OVERVIEW : </Text>
+      { overview ?  <Text style={[styles.overview, {fontSize:18, fontWeight:"900", paddingBottom:2}]}>OVERVIEW : </Text> : null}
       <Text style={styles.overview}>{overview}</Text>
     </ScrollView>
     </View>
@@ -81,8 +83,8 @@ const styles = StyleSheet.create({
   imageStyle:{
     width: Dimensions.get("screen").width,
     height: Dimensions.get("screen").height / 2,
-    borderBottomLeftRadius:20,
-    borderBottomRightRadius:20,
+    borderBottomLeftRadius:40,
+    borderBottomRightRadius:40,
   },
   titleStyle:{
     fontSize:40,

@@ -2,41 +2,32 @@ import React, {useState, useEffect} from 'react';
 import {View, FlatList} from 'react-native';
 import axios from 'axios';
 
+import { fetchData } from "../../API_helpers/Fetch";
+import { useFetch } from '../../Hooks/useFetch';
 import Button from './buttons';
 import style from './style';
-import { useFetch } from '../../Hooks/useFetch';
 
 function SearchButtonsForMovie(props) {
-  const [genres, setGenres] = useState([]);
-
-  async function fetchData() {
-    props.setIsLoading(true)
-    const response = await axios.get(props.genreURL);
-    const genresData = response.data;
-    props.setIsLoading(false)
-    setGenres(genresData.genres);
-  }
+  const {data} = useFetch(props.genreURL,{})
+  console.log(data,"asddsaddasda")
 
   async function fetchFilteredData(item) {
-    props.setIsLoading(true)
-    const response = await axios.get(props.discoverUrl, {params: {with_genres: item.id}});
-    props.setMovieList(response.data.results);
-    props.setIsLoading(false)
-    console.log(response.data.results, 'response');
+    const results = await fetchData(props.discoverUrl,  {with_genres: item.id})
+    props.setMovieList(results);
   }
 
   const renderData = ({item}) => (
     <Button onPress={() => fetchFilteredData(item)} name={item.name}></Button>
   );
 
-  useEffect(() => {fetchData() }, []);
 
-
+  // Film Türleri
   return (
     <View style={style.container}>
       <FlatList
         horizontal={true}
-        data={genres}
+        showsHorizontalScrollIndicator={false}
+        data={data.genres}
         renderItem={renderData}
         keyExtractor={item => item.id.toString()}></FlatList>
     </View>
